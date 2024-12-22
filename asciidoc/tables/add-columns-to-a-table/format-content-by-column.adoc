@@ -1,0 +1,149 @@
+= Format Content by Column
+:source-highlighter: rouge
+
+* A column style operator is applied to a column specifier and assigned to the `cols` attribute.
+
+== Column styles and their operators
+
+* You can style all of the content in a column by adding a style operator to a column's specifier.
+
+[cols="d,m,a", options="autowidth"]
+|===
+|Style |Operator |Description
+
+|AsciiDoc |`a` |
+* Supports block elements (lists, delimited blocks, and block macros).
+* This style effectively creates a nested, standalone AsciiDoc document.
+* The parent document's implicit attributes, such as doctitle, are shadowed and custom attributes are inherited.
+
+|Default |`d` |
+All of the markup that is permitted in a paragraph (i.e., inline formatting, inline macros) is supported.
+
+|Emphasis |`e` |Text is italicized.
+|Header |`h` |Applies the header semantics and styles to the text and cell borders.
+|Literal |`l` |Content is treated as if it were inside a literal block.
+|Monospace |`m` |Text is rendered using a monospace font.
+|Strong |`s` |Text is bold.
+|===
+
+* When a style operator isn't explicitly applied to a column specifier, the `d` style is assigned automatically and the column is processed as paragraph text.
+
+== Apply a style operator to a column
+
+* A style operator is always placed in the last position on a column's specifier or multiplier.
+** `[cols=">e,.^3s"]` A style operator is placed directly after any other operators and the column width in the column's specifier.
+** `[cols="h,e"]` When a column width isn't specified, the style operator can represent both the column and the column's content style.
+** `[cols="3*.>m"]` When a multiplier is present, the style operator is placed after any horizontal and vertical alignment operators.
+* Let's apply a different style to each column in Example 1.
+
+.Example 1. Add a style operator to each column
+[,asciidoc]
+----
+[cols="h,m,s,e"]
+|===
+|Column 1 |Column 2 |Column 3 |Column 4
+
+|This column's content and borders are rendered using the table header (`h`) styles.
+|This column's content is rendered using a monospace font (m).
+|This column's content is bold (`s`).
+|This column's content is italicized (`e`).
+
+|This column's content and borders are rendered using the table header (`h`) styles.
+|This column's content is rendered using a monospace font (m).
+|This column's content is bold (`s`).
+|This column's content is italicized (`e`).
+|===
+----
+
+* The table from Example 1 is displayed below.
+* Note that the style applied to each column doesn't affect the header row or override any inline formatting.
+
+.Result of Example 1
+====
+[cols="h,m,s,e"]
+|===
+|Column 1 |Column 2 |Column 3 |Column 4
+
+|This column's content and borders are rendered using the table header (`h`) styles.
+|This column's content is rendered using a monospace font (m).
+|This column's content is bold (`s`).
+|This column's content is italicized (`e`).
+
+|This column's content and borders are rendered using the table header (`h`) styles.
+|This column's content is rendered using a monospace font (m).
+|This column's content is bold (`s`).
+|This column's content is italicized (`e`).
+|===
+====
+
+* Additionally, if a cell specifier contains a style operator, that style will override a column's style operator.
+
+== Use AsciiDoc block elements in a column
+
+* To use AsciiDoc block elements, such as delimited source blocks and lists, in a column, place the lowercase letter `a` on the column specifier.
+
+.Example 2. Apply the AsciiDoc block style operator to the first column
+[,asciidoc]
+-----
+[cols="2a,2"]
+|===
+|Column with the `a` style operator applied to its specifier |Column using the default style
+
+|
+* List item 1
+* List item 2
+* List item 3
+|
+* List item 1
+* List item 2
+* List item 3
+
+|
+[source,python]
+----
+import os
+print "%s" %(os.uname())
+----
+|
+[source,python]
+----
+import os
+print ("%s" %(os.uname()))
+----
+|===
+-----
+
+* The AsciiDoc block style effectively creates a nested, standalone AsciiDoc document in each cell in the column.
+* The parent document's implicit attributes, such as doctitle, are shadowed and custom attributes are inherited.
+
+.Result of Example 2
+====
+[cols="2a,2"]
+|===
+|Column with the `a` style operator applied to its specifier |Column using the default style
+
+|
+* List item 1
+* List item 2
+* List item 3
+|
+* List item 1
+* List item 2
+* List item 3
+
+|
+[source,python]
+----
+import os
+print "%s" %(os.uname())
+----
+|
+[source,python]
+----
+import os
+print ("%s" %(os.uname()))
+----
+|===
+====
+
+* You can also apply the AsciiDoc block style operator to individual cells.
