@@ -64,7 +64,7 @@ table:: a special content model reserved for tables that enforces a fixed struct
 '''
 
 * Let's consider the following normal section:
-
++
 [,asciidoc]
 ----
 == Section Title
@@ -120,7 +120,7 @@ Content of section.
 ====
 
 .Built-in contexts
-[cols="h,d",options="autowidth"]
+[cols="h,a",options="autowidth"]
 |===
 |Name |Purpose
 
@@ -140,7 +140,10 @@ Content of section.
 
 |image |An image block.
 
-|list_item |An item in an ordered, unordered, or description list (only relevant inside a list or description list block). In a description list, this block is used to represent the term and the description.
+|list_item
+|
+* An item in an ordered, unordered, or description list (only relevant inside a list or description list block).
+* In a description list, this block is used to represent the term and the description.
 
 |listing |A listing block.
 
@@ -205,7 +208,7 @@ Content of section.
 
 '''
 
-* Above some blocks, you may notice a name at the start of the block attribute list (e.g., [source] or [verse]).
+* Above some blocks, you may notice a name at the start of the block attribute list (e.g., `[source]` or ``[verse]``).
 * The first positional (unnamed) attribute in the block attribute list is used to declare the block style.
 
 '''
@@ -218,7 +221,7 @@ Content of section.
 '''
 
 * Consider the following example of a source block:
-
++
 [,asciidoc]
 -----
 [,ruby]
@@ -235,12 +238,12 @@ puts "Hello, World!"
 '''
 
 * We also see the block style used for other purposes.
-* The appendix block style (e.g., [appendix]) above the section title specializes the section as an appendix (a special section) and thus has special semantics and behavior.
-* In the model, the section's style is dually stored as the sectname.
-* One of the five admonition styles (e.g., [TIP]) above an example block transforms the example block into an admonition block with that name (i.e., label).
-* In the model, the admonition style in lowercase is stored in the name attribute.
-* A block style (e.g., [circle] or [loweralpha]) above an unordered or ordered list, respectively, alters the marker used in front of list items when displayed.
-* A block style (e.g., [qanda] and [horizontal]) above a description list can either change its semantics or layout.
+* The appendix block style (e.g., ``[appendix]``) above the section title specializes the section as an appendix (a special section) and thus has special semantics and behavior.
+* In the model, the section's style is dually stored as the ``sectname``.
+* One of the five admonition styles (e.g., ``[TIP]``) above an example block transforms the example block into an admonition block with that name (i.e., label).
+* In the model, the admonition style in lowercase is stored in the `name` attribute.
+* A block style (e.g., `[circle]` or ``[loweralpha]``) above an unordered or ordered list, respectively, alters the marker used in front of list items when displayed.
+* A block style (e.g., `[qanda]` and ``[horizontal]``) above a description list can either change its semantics or layout.
 
 '''
 
@@ -276,16 +279,14 @@ a > b
 * All blocks accommodate zero or more lines of metadata stacked linewise directly on top of the block.
 * These lines populate the properties of the block, such as the ID, title, and options.
 * These metadata lines are as follows:
-
 ** Zero or more block attribute lines (which populate the block's attributes)
 ** An optional block anchor line
 ** An optional block title line (many blocks also support a corresponding caption)
 ** An optional ID
 ** An optional set of roles
 ** An optional set of options
-
 * For example, consider a sidebar block with a title and ID:
-
++
 [,asciidoc]
 ----
 .Styles of music
