@@ -147,10 +147,10 @@ document.
 .Example 4. Cross reference using a section's title
 --
 [source,asciidoc]
-Refer to <<Internal Cross References>>.
+Refer to <<Internal cross references>>.
 
 ====
-Refer to <<Internal Cross References>>.
+Refer to <<Internal cross references>>.
 ====
 --
 
