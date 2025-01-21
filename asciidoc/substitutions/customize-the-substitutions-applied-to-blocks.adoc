@@ -1,0 +1,70 @@
+= Customize the Substitutions Applied to Blocks
+
+* Each block context is associated with a set default substitutions that best
+  suit the content model.
+* However, there are situations where you may need a different set of
+  substitutions to be applied.
+* For example, you may want the AsciiDoc processor to substitute attribute
+  references in a listing block.
+* Therefore, the AsciiDoc language provides a mechanism for altering the
+  substitutions on a block.
+
+== The subs attribute
+
+* The substitutions that get applied to a block (and to certain inline elements)
+  can be changed or modified using the `subs` element attribute.
+* This attribute accepts a comma-separated list of substitution steps or groups.
+
+'''
+
+* The names of those substitution steps and groups are as follows:
+
+`none`::
+** Substitution group that disables all substitutions.
+
+`normal`::
+** Substitution group that performs all substitution types except callouts.
+
+`verbatim`::
+** Substitution group that replaces special characters and processes callouts.
+
+`specialchars`::
+** Substitution step that replaces `<`, `>`, and `&` with their corresponding
+   entities.
+** For source blocks, this substitution step enables syntax highlighting as
+   well.
+
+`callouts`::
+** Substitution step that processes callouts in literal, listing, and source
+   blocks.
+
+`quotes`::
+** Substitution step that applies inline text formatting.
+
+`attributes`::
+** Substitution step that replaces attribute references.
+
+`replacements`::
+** Substitution step that replaces hexadecimal Unicode code points and entity,
+   HTML, and XML character references with the characters' decimal Unicode code
+   point.
+** The output of replacements may depend on whether the specialcharacters
+   substitution was previously applied.
+
+`macros`::
+** Substitution step that processes inline and block macros.
+
+`post_replacements`::
+** Substitution step that processes the line break character (`+`).
+
+* If a `+` or `-` modifier is added to a step, the existing substitutions are
+  modified accordingly (see incremental subs).
+* Otherwise, the existing substitutions are replaced.
+* The value also specifies the order in which the substitutions are applied.
+
+[NOTE]
+====
+* The `subs` element attribute does not inherit to nested blocks.
+* It can only be applied to a leaf block, which is any block that cannot have
+  child blocks (e.g., a paragraph or a listing block).
+====
