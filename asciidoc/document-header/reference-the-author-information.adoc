@@ -1,0 +1,57 @@
+= Reference the Author Information
+:source-highlighter: rouge
+:toc: left
+
+== Referencing the author attributes
+
+* You can reference the built-in author attributes in your document regardless
+  of whether they're set via the author line or attribute entries.
+* In Example 1, the author and email attributes are assigned using attribute
+  entries.
+
+.Reference the author attributes
+====
+[,asciidoc]
+----
+= The Intrepid Chronicles
+:author: Kismet R. Lee
+:email: kismet@asciidoctor.org
+
+== About {author}
+
+You can contact {firstname} at {email}.
+
+P.S. Don't ask what the {middlename} stands for; it's a secret.
+{authorinitials}
+----
+====
+
+== Referencing information for multiple authors
+
+* The first author in an author line is assigned to the built-in attributes
+  `author`, `email`, `firstname`, etc.
+* Subsequent authors are assigned to the built-in author attributes, but the
+  attribute names are appended with an underscore (`_`) and the numeric
+  position of the author in the author line.
+* For instance, the author _B. Steppenwolf_ in Example 2 is the second author
+  in the author line.
+* The built-in attributes used to reference their information are appended
+  with the number 2, e.g., `author_2`, `email_2`, `lastname_2`, etc.
+
+.Reference the built-in attributes for multiple authors
+====
+[,asciidoc]
+----
+= The Intrepid Chronicles
+Kismet R. Lee <kismet@asciidoctor.org>; B. Steppenwolf; Pax Draeke <pax@asciidoctor.org>
+
+.About {author_2}
+Mr. {lastname_2} lives in the Rocky Mountains.
+
+.About {author_3}
+{firstname_3}, also known as {authorinitials_3}, loves to surf.
+
+.About {author}
+You can contact {firstname} at {email}.
+----
+====
