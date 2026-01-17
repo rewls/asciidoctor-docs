@@ -1,0 +1,37 @@
+= Assign Revision Attributes with Attribute Entries
+:toc: left
+
+== When should I set revision attributes explicitly?
+
+* You should set the revision attributes explicitly when one of the following
+  occurs:
+** the document doesn't have an author line,
+** the document doesn't have a revision number,
+** you want the full value of the revision number -- including any letter and
+   symbol prefixes -- to be displayed, or a revision attribute's value
+   contains characters or elements that conflict with the revision line
+   syntax.
+
+== Set the revision attributes
+
+* The attributes `revdate`, `revnumber` and `revremark` are set and assigned
+  values in Example 1.
+* The order of the attribute entries doesn't affect their order in the byline
+  of a rendered document.
+
+.Set the revision attributes in the document header
+====
+[,asciidoc]
+----
+= The Intrepid Chronicles
+:revdate: April 4, 2022
+:revnumber: LPR55 <1>
+:revremark: The spring incarnation of {doctitle} <2>
+:version-label!: <3>
+----
+<1> Any non-numeric characters that precede the version number aren't dropped
+    when `revnumber` is set using an attribute entry.
+<2> The value of `revremark` can contain attribute references.
+<3> The `version-label` attribute is unset so that the word _Version_ isn't
+    displayed in the byline.
+====
